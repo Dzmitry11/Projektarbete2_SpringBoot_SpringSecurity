@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager</title>
+</head>
+<body>
+<h1>Welcome Manager!</h1>
+
+<a href="/user">User page</a>
+<a href="/admin">Admin page</a>
+<a href="/manager">Manager page</a>
+
+<h2>Available Documents</h2>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Showing list of documents -->
+    <tr th:each="infoText : ${infoText}">
+        <td th:text="${infoText.title}"></td>
+        <td th:text="${infoText.infoText}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

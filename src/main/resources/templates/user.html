@@ -1,0 +1,22 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+</head>
+<body>
+<h1>User page</h1>
+<p>Welcome <span th:text="${username}"></span>!</p>
+
+<a href="/user/stuffs">Your services</a>
+
+<h2>Menu:</h2>
+<ul>
+    <li th:each="item : ${menu}">
+        <a th:href="@{'/' + item.toLowerCase()}" th:text="${item}"></a>
+    </li>
+</ul>
+<p>This is your personal dashboard with various information.</p>
+
+</body>
+</html>

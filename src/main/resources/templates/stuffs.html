@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Control Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    iframe {
+      border: none;
+      width: 320px;
+      height: 240px;
+    }
+    .status {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<h1>Welcome, User!</h1>
+
+<h2>Store Control Panel</h2>
+
+<h3>Live Cameras</h3>
+<div th:each="camera : ${cameras}">
+  <h4 th:text="${camera.name}"></h4>
+  <iframe th:src="${camera.streamUrl}" allowfullscreen></iframe>
+</div>
+
+<h3>Detectors</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Enabled</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="detector : ${detectors}">
+    <td th:text="${detector.type}"></td>
+    <td th:text="${detector.enabled ? 'Enabled' : 'Disabled'}"
+        th:classappend="${detector.enabled ? 'status-enabled' : 'status-disabled'}"></td>
+    <td th:if="${detector.enabled}"
+        th:text="${detector.active ? 'Active (Triggered)' : 'Inactive (Normal)'}"></td>
+    <td th:unless="${detector.enabled}">-</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>Alarm System</h3>
+<p><strong>Enabled:</strong> <span th:text="${alarmEnabled ? 'Yes' : 'No'}"></span></p>
+<p><strong>Active:</strong> <span th:text="${alarmActive ? 'Yes (Triggered)' : 'No (Normal)'}"></span></p>
+
+</body>
+</html>
